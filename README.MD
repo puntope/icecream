@@ -32,16 +32,44 @@ cd
 
 ## How it works
 
+- For one side is the Wordpress admin
+
+There you can see the icecream postType (with the icecreams you need in the pages). I basically render the image and content for the first 3.
+
+Then, insde the Pages, you can set the feature image, the form, hubspot portal and ID, heading, cta...
+
+In contact you can set the different forms you want, just set the html there and after, you can use that forms in the different pages of the site.
+
+
+- For other side is frontend part (mobile and desktop) and the boilerplate 
+
+
 `/db` - Contains basically a dump.sql from my database
+
 `docker` - The docker comfiguration, such apache conf, composer.json (there are the wp plugins and installers)
+
 `website` - contains enviroment config and the code
+
 `website/.env` - Project settings
+
 `webiste/config` - enviroment config (depends on your WP_ENV settings)
+
 `webiste/public` - THE CODE . Bacisally the Icecream theme
 
-The theme contains
+The theme contains some important stuff
+
 `assets` - SCSS, JS, Images, Fonts...and other assets
+
 `includes` - PHP Files, functions & other usefull stuff
+
+`templates` - Different twig templates
+
+`functions.php` - A lot of nice stuff happen here
+
+`page.php` - A sample basic Page PHP file.
+
+
+The rest, like plugins or WP core files are handled by Composer with docker (see Dockerfile).
 
 
 
