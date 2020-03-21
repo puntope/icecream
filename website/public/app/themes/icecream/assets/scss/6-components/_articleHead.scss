@@ -1,0 +1,38 @@
+.article-head {
+  background-image: url('/app/themes/icecream/assets/img/header.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  align-items: center;
+  padding-top: 4em;
+  @include breakpoint('medium') {
+	padding-top: 0;
+  }
+
+  &__info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  }
+
+  &__title {
+	@include font($fontSecondary, $fontSizeXXL);
+	@include breakpoint('small') {
+	  @include font($fontSecondary, $fontSizeXXLDesktop);
+	}
+	line-height: 148%;
+  }
+
+  &__thumb {
+	position: relative;
+	top: -2em;
+  }
+
+  &__image {
+	margin-top: 3em;
+	@include breakpoint('medium') {
+	  margin-top: 0;
+	}
+  }
+}

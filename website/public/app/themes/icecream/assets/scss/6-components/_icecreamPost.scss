@@ -1,0 +1,17 @@
+.icecream-post {
+
+  margin-top: 1em;
+  margin-bottom: 4em;
+
+  width: 100%;
+
+  @include breakpoint('small') {
+	width: 30%;
+	max-width: 300px;
+  }
+
+  &__thumb {
+	margin-bottom: 2em;
+  }
+
+}

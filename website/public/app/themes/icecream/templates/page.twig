@@ -1,0 +1,55 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="article-content is-page">
+		<header class="article-head">
+			<div class="container cols">
+				<div class="article-head__info col">
+					<h1 class="article-head__title">{{ post.title }}</h1>
+					{% if cta %}
+						<div class="article-head__cta">
+							<form class="cta js-cta-form" action="#" method="POST">
+								<input required placeholder="E-mail" class="cta__field" type="email" name="email" id="email" />
+								<button class="cta__submit" type="submit"><span>{{ cta }}</span></button>
+							</form>
+						</div>
+					{% endif %}
+				</div>
+				<div class="article-head__image col">
+					<img src="{{ post.thumbnail.src }}" class="article-head__thumb" alt="Image for {{ post.title }}" />
+				</div>
+			</div>
+
+		</header>
+
+		{% if icecreams|length %}
+			<section class="container cols">
+				{% for icecream in icecreams %}
+					<div class="icecream-post col">
+						<img src="{{ icecream.thumbnail.src }}" class="icecream-post__thumb" alt="Image for {{ icecream.title }}" />
+						<div class="icecream-post__info">{{ icecream.content }}</div>
+					</div>
+				{% endfor %}
+			</section>
+		{% endif %}
+
+		{% if form and heading %}
+			<section class="request">
+				<div class="container cols request__wrap">
+					<div class="request__info col">
+						<h3 class="h3">{{ heading }}</h3>
+						{% if text %}
+							<div class="claim">{{ text }}</div>
+						{% endif %}
+					</div>
+					<div class="request__form col">
+						<div class="form js-form" data-form="{{ hubspot_form }}" data-portal="{{ hubspot_portal }}">
+							{{ function('do_shortcode', '[contact-form-7 id="9" title="Icecream Form"]') }}
+						</div>
+					</div>
+
+				</div>
+			</section>
+		{% endif %}
+	</div>
+{% endblock %}

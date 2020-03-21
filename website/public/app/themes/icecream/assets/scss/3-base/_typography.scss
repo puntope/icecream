@@ -1,0 +1,12 @@
+/*
+ * Imported fonts:
+ * - Camber-Md
+ * - AktivGrotesk-Medium
+ */
+
+@mixin font($family: 'Camber-Md', $size: 18, $weight: 400, $stroke: false) {
+  	font-size: $size * 1px;
+    font-family: $family, 'Helvetica', 'Arial', sans-serif;
+    font-weight: $weight;
+    line-height: 120%;
+}

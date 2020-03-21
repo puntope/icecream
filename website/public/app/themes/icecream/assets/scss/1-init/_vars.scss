@@ -1,0 +1,64 @@
+/* -----
+Colors
+----- */
+$purple: #BE59D6;
+$white: #fff;
+$grey: #D9D9D9;
+$black: #000;
+$magenta: #FF0062;
+$blue: #1051FF;
+$lightBlue: #5BA5C6;
+$superLightBlue: #B6D7FF;
+
+$base: $black;
+$primary: $purple;
+$accent: $magenta;
+
+/* -----
+Animation
+----- */
+$ease: $easeInOutSine;
+$duration: .2s;
+$duration-long: .5s;
+
+/* -----
+Sizes
+----- */
+
+
+// design width in pixels
+$mobileDesignWidth: 375;
+$desktopDesignWidth: 1920;
+
+// defaultCols Destktop
+$defaultCols: 30;
+$mobileCols: 28.84;
+
+$smallSpace: 1vw;
+$mediumSpace: 2vw;
+$bigSpace: 3vw;
+
+
+/* -----
+Fonts
+----- */
+
+$font: 'Helvetica';
+$fontSecondary: 'Helvetica Neue';
+
+$fontSizeXXSDesktop: 10;
+$fontSizeXS: 12;
+$fontSizeS: 14;
+$fontSize: 16;
+$fontSizeM: 20;
+$fontSizeXL: 24;
+$fontSizeXXL: 32;
+
+$fontSizeXXSDesktop: 13;
+$fontSizeXSDesktop: 16;
+$fontSizeSDesktop: 18;
+$fontSizeDesktop: 20;
+$fontSizeMDesktop: 25;
+$fontSizeXLDesktop: 36;
+$fontSizeXXLDesktop: 54;
+

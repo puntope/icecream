@@ -1,0 +1,31 @@
+@mixin intrinsic($dimension: square, $customPadding: 0) {
+    width: 100%;
+    // height: auto;
+    position: relative;
+
+    @if $dimension==square {
+        padding-top: 100%;
+    }
+    @else if $dimension==landscape {
+        padding-top: 75%;
+    }
+    @else if $dimension==portrait {
+        padding-top: 125%;
+    }
+    @else if $dimension==video {
+        padding-top: 67.57%;
+    }
+    @else if $dimension==featuredImage {
+        padding-top: 85%;
+    }
+    @else if $dimension==hero {
+        padding-top: 110%;
+
+        @include breakpoint('medium') {
+            padding-top: 90%;
+        }
+    }
+    @else if $dimension==custom {
+        padding-top: $customPadding;
+    }
+}

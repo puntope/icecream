@@ -1,0 +1,16 @@
+// Z-index Setup
+
+$next-z-index: 0;
+
+/// Z-index incrementer
+/// @group settings
+/// @requires {variable} next-z-index
+/// @return {Number}
+
+@function get-next-z-index() {
+    $next-z-index: $next-z-index + 1 !global;
+    @return $next-z-index;
+}
+
+$z-index-button-label: get-next-z-index();
+

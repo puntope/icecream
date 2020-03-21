@@ -1,0 +1,40 @@
+/*
+    Import style file
+*/
+
+// Init
+@import './1-init/easings';
+@import './1-init/vars';
+@import './1-init/fonts';
+
+// Utility
+@import './2-utility/breakpoints';
+@import './2-utility/grid';
+@import './2-utility/intrinsic';
+@import './2-utility/utils';
+@import './2-utility/zindex';
+
+// Base
+@import './3-base/typography';
+@import './3-base/normalize';
+@import './3-base/wordpress';
+
+// Libs
+@import "~sweetalert2/src/sweetalert2";
+
+// Theme
+
+@import './5-theme/base';
+@import './5-theme/layout';
+@import './5-theme/header';
+@import './5-theme/footer';
+@import './5-theme/text';
+
+// Components
+@import './6-components/articleHead';
+@import './6-components/request';
+@import './6-components/form';
+@import './6-components/cta';
+@import './6-components/icecreamPost';
+
+

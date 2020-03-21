@@ -1,0 +1,39 @@
+.request {
+  margin-top: #{col-mobile(5)};
+  text-align: left;
+  background: rgba(162,234,255,.2);
+  background: linear-gradient(0deg, rgba(162,234,255,.2) 0%, rgba(174,208,255,.2) 50%, rgba(187,174,255,.2) 100%);
+  position: relative;
+  top: #{col-mobile(5)};
+  padding-bottom: #{col-mobile(10)};
+
+  @include breakpoint('small') {
+	margin-top: 0;
+	top: #{col-mobile(2)};
+	padding-bottom: #{col-mobile(2)};
+  }
+  &__wrap {
+	overflow-x: hidden;
+	@include breakpoint('medium') {
+	  overflow-x: visible;
+	}
+  }
+
+  &__info {
+	padding: 4em 1em;
+	@include breakpoint('medium') {
+	  padding: 0 1em;
+	}
+  }
+
+  &__form {
+	position: relative;
+	form {
+	  height: 667px;
+	  overflow-x: hidden;
+	  @include breakpoint('medium') {
+		height: 500px;
+	  }
+	}
+  }
+}

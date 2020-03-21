@@ -1,0 +1,15 @@
+.h3 {
+  color: $magenta;
+  @include font($fontSecondary, $fontSizeXL);
+  @include breakpoint('small') {
+	@include font($fontSecondary, $fontSizeXLDesktop);
+  }
+}
+
+p {
+  @include font($fontSecondary, $fontSize);
+  @include breakpoint('small') {
+	@include font($fontSecondary, $fontSizeDesktop);
+  }
+  line-height: 160%;
+}

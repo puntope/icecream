@@ -1,0 +1,50 @@
+.idea
+notebook
+.sass-cache
+.DS_Store
+.phpintel
+
+# Application
+**/public/plugins/*
+**/public/mu-plugins/*
+**/public/app/upgrade
+**/public/uploads/**/*
+
+
+# WordPress
+**/public/wp
+public/.htaccess
+**/wc-logs
+
+# WP-CLI
+db-sync
+sql-dump-*.sql
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Vendor (e.g. Composer)
+vendor/*
+/website/vendor/*
+!vendor/.gitkeep
+**/themes/**/includes/lib/vendor
+
+# Node Package Manager
+node_modules
+
+# Vagrant
+bin
+.vagrant
+
+# INCLUDE NOT COMPOSER MANAGED PLUGINS
+
+
+*_n-*
+*-c-default.*
+*-c-1.*
+debug.log
+*.log
+.vscode
+yarn.lock

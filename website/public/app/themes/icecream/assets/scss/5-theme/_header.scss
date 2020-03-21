@@ -1,0 +1,46 @@
+.header {
+  background: linear-gradient(70deg, rgba(162, 234, 255, 1) 0%, rgba(174, 208, 255, 1) 50%, rgba(187, 174, 255, 1) 100%);
+}
+
+.article-head {
+  margin-bottom: 2em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .nav-item {
+	padding: 1em 0;
+	width: 80px;
+	text-align: center;
+
+	a {
+	  cursor: pointer;
+	  color: $white;
+
+	  @include font($fontSecondary, $fontSizeS);
+	  @include breakpoint('small') {
+		@include font($fontSecondary, $fontSizeSDesktop);
+	  }
+	  font-weight: bold;
+	  text-shadow: 0 3px 6px rgba(0,0,0,.21);
+	}
+
+  }
+}
+
+.hover {
+  background: $blue;
+  width: 50px;
+  height: 15px;
+  position: absolute;
+  margin-left: 15px;
+  margin-top: .5em;
+  border-radius: 8px;
+  transition: transform $ease $duration;
+  transform: translateX(0);
+}

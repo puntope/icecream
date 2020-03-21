@@ -1,0 +1,13 @@
+{% set icecreams = ['#FFC7D3','#FFFBD7','#D7FFFA','#FFC7D3','#FFFBD7','#D7FFFA'] %}
+<footer class="footer">
+	<div class="container">
+		<div class="footer__icecreams">
+			{% for icecream in icecreams  %}
+				{% include 'components/icecream.twig' with { color: icecream} %}
+			{% endfor %}
+		</div>
+		<p class="footer__copy">{{ site.name }} {{ __('All Rights Reserved!') }} {{"now"|date('Y')}}</p>
+	</div>
+</footer>
+
+

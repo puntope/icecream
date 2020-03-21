@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  website:
+    depends_on:
+      - db
+    build: './website'
+    container_name: 'icecream-website'
+    image: 'icecream-website'
+    working_dir: /var/www
+    restart: 'unless-stopped'
+    ports:
+      - "80:80"
+    volumes:
+      - ../website/public/app:/var/www/public/app
+      - ../website/config:/var/www/config
+      - ../website/.env:/var/www/.env
+      - ../website/index.php:/var/www/public/index.php
+      - ../website/wp-config.php:/var/www/public/wp-config.php
+
+  db:
+    image: mariadb:10.3
+    container_name: 'icecream-database'
+    volumes:
+      - icecream-dbdata:/var/lib/mysql
+    restart: 'unless-stopped'
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+
+volumes:
+  icecream-dbdata:

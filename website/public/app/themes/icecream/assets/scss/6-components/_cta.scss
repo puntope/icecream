@@ -1,0 +1,54 @@
+.cta {
+  margin-top: 2em;
+  background: $white;
+  box-shadow: 0 10px 20px rgba(0,0,0,.16);
+  border-radius: 30px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+	border: none;
+	padding: 0 1em;
+	width: 100%;
+  }
+
+  button {
+	width: 100%;
+	cursor: pointer;
+	border-radius: 30px;
+	padding: 10px 15px;
+	color: $white;
+	background: linear-gradient(0deg, rgba(249,182,208,1) 0%,rgba(239,106,192,1) 100%);
+	position: relative;
+	overflow: hidden;
+
+	@include breakpoint('medium') {
+	  padding: 10px 20px;
+	}
+
+	span {
+	  position: relative;
+	  z-index: $z-index-button-label;
+	}
+
+	&:after {
+	  content: "";
+	  position: absolute;
+	  width: 100%;
+	  left: 0;
+	  border-radius: 30px;
+	  height: 100%;
+	  top: 0;
+	  transform: translate(0, 100%);
+	  transition: transform $duration $ease;
+	  background: linear-gradient(0deg,rgba(239,106,192,1) 0%,rgba(249,182,208,1)  100% );
+	}
+
+	&:hover:after {
+	  transform: translate(0, 0);
+	}
+
+  }
+}

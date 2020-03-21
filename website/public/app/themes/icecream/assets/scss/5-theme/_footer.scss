@@ -1,0 +1,58 @@
+.footer {
+  color: white;
+  background: $purple;
+  @include font($fontSecondary, $fontSizeS);
+
+  @include breakpoint('small') {
+	@include font($fontSecondary, $fontSizeSDesktop);
+  }
+
+  &__icecreams {
+	position: relative;
+	top: -#{col-mobile(2)};
+	padding: 2em 1em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+
+	.icecream {
+	  margin: 0 1em;
+	  height: auto;
+	  max-width: 180px;
+	  animation-duration: 2s;
+	  animation-fill-mode: both;
+	  animation-timing-function: linear;
+	  animation-iteration-count: infinite;
+	  animation-name: bounce;
+	  @for $i from 1 through 6 {
+		&:nth-child(#{$i}) {
+		  animation-delay: .25s * $i;
+
+		  @if ($i > 3) {
+			display: none;
+			@include breakpoint('medium') {
+				display: block;
+			}
+		  }
+
+		}
+
+	  }
+	}
+  }
+
+  &__copy {
+	padding: 1em;
+  }
+
+}
+
+@keyframes bounce {
+  0%, 100% {
+	transform: translateY(5vh);
+  }
+  50% {
+	transform: translateY(-5vh);
+  }
+}

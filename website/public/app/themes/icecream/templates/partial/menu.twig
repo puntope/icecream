@@ -1,0 +1,11 @@
+{% if menu %}
+	<nav role="navigation" class="nav {{ className | join(' ') }}">
+		{% for item in menu %}
+			<li class="nav-item js-hoverable {{ item.classes | join(' ') }}">
+				<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+				{% include "partial/menu.twig" with {'menu': item.get_children} %}
+			</li>
+		{% endfor %}
+	</nav>
+	<div class="hover js-hover"></div>
+{% endif %}

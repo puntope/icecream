@@ -1,0 +1,422 @@
+/// @param {Number}   $responsive  - Viewport-based size
+/// @param {Number}   $min         - Minimum font size (px)
+/// @param {Number}   $max         - Maximum font size (px)
+/// @include responsive-size(5vw, 35px, 150px);
+/* stylelint-disable */
+@mixin responsive-size($px,$min, $max: false) {
+    $responsive: get-vw($px);
+    $responsiveMobile: get-vw-mobile($px);
+
+
+	@media (max-width: 1024px) {
+	  font-size: $min * 1px;
+	}
+
+	@if $max {
+	  $max-breakpoint: $max / $responsive * 100;
+
+	  @media (min-width: #{$max-breakpoint}px) {
+		font-size: $max * 1px;
+	  }
+	}
+
+    font-size: $px * 1px;
+    font-size: $responsiveMobile * 1vw;
+
+    @include breakpoint('medium') {
+        font-size: $responsive * 1vw;
+    }
+}
+
+/* stylelint-enable */
+
+@function get-vw($target) {
+    $vw-context: ($desktopDesignWidth * .01);
+    @return ($target / $vw-context);
+}
+
+@function get-vw-mobile($target) {
+    $vw-context: ($mobileDesignWidth * .01);
+    @return ($target / $vw-context);
+}
+
+/* -----
+Responsive hover
+----- */
+@mixin hover() {
+    @media (hover: hover) {
+
+        &:hover {
+            @content;
+        }
+    }
+
+    &:active {
+        @content;
+    }
+}
+
+/*
+Returns a percentage value to get the correct apsect ratio to be used as padding-top
+*/
+@function aspect-ratio($width: 16, $height: 9) {
+    @return 1 / ($width / $height) * 100%;
+}
+
+/*
+Returns a vw value, can be used with anything.
+*/
+@function vw-column($piece, $pie: $defaultCols) {
+    @return ($piece/$pie) * 100vw;
+}
+
+/*
+Returns a vw value, can be used with anything. For Mobile Columns
+*/
+@function col-mobile($piece, $pie: $mobileCols) {
+    @return ($piece/$pie) * 100vw;
+}
+
+/*
+Generates cursors based on cursor name
+*/
+@mixin cursor($name, $x: 10, $y: 15) {
+    /* stylelint-disable declaration-block-no-duplicate-properties */
+    /* stylelint-disable indentation */
+    cursor: default;
+    cursor: url('#{$staticAssetURL}/img/cursors/cursors_#{$name}.cur'), default;
+    cursor: url('#{$staticAssetURL}/img/cursors/cursors_#{$name}.png') $x $y,
+    auto;
+    cursor: -webkit-image-set(
+                    url('#{$staticAssetURL}/img/cursors/cursors_#{$name}.png') 1x,
+                    url('#{$staticAssetURL}/img/cursors/cursors_#{$name}@2x.png') 2x
+    )
+    $x $y,
+    auto;
+    /* stylelint-enable declaration-block-no-duplicate-properties */
+    /* stylelint-enable indentation */
+}
+
+@function pow($number, $exp) {
+    $value: 1;
+
+    @if $exp > 0 {
+        @for $i from 1 through $exp {
+            $value: $value * $number;
+        }
+    } @else if $exp < 0 {
+        @for $i from 1 through -$exp {
+            $value: $value / $number;
+        }
+    }
+
+    @return $value;
+}
+
+@function fact($number) {
+    $value: 1;
+
+    @if $number > 0 {
+        @for $i from 1 through $number {
+            $value: $value * $i;
+        }
+    }
+
+    @return $value;
+}
+
+@function sqrt($r) {
+    $x0: 1;
+    $x1: $x0;
+
+    @for $i from 1 through 10 {
+        $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+        $x0: $x1;
+    }
+
+    @return $x1;
+}
+
+@function pi() {
+    @return 3.1415926535897932384626433832795028841971694;
+}
+
+@function rad($angle) {
+    $unit: unit($angle);
+    $unitless: $angle / ($angle * 0 + 1);
+
+    // If the angle has 'deg' as unit, convert to radians.
+    @if $unit == deg {
+        $unitless: $unitless / 180 * pi();
+    }
+
+    @return $unitless;
+}
+
+@function sin($angle) {
+    $sin: 0;
+    $angle: rad($angle);
+
+    // Iterate a bunch of times.
+    @for $i from 0 through 10 {
+        $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    }
+
+    @return $sin;
+}
+
+@function cos($angle) {
+    $cos: 0;
+    $angle: rad($angle);
+
+    // Iterate a bunch of times.
+    @for $i from 0 through 10 {
+        $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    }
+
+    @return $cos;
+}
+
+@function tan($angle) {
+    @return sin($angle) / cos($angle);
+}
+
+@function atan($x) {
+    $i: 24;
+    $sgn: 0;
+    $a: 0;
+    @if $x > 1 {
+        $sgn: 1;
+        $x: 1 / $x;
+    } @else if $x < -1 {
+        $sgn: -1;
+        $x: 1 / $x;
+    }
+    @while $i > 0 {
+        $a: ($i * $i * $x * $x) / (2 * $i + 1 + $a);
+        $i: $i - 1;
+    }
+    @if $sgn > 0 {
+        @return pi() / 2 - $x / (1 + $a);
+    } @else if $sgn < 0 {
+        @return -pi() / 2 - $x / (1 + $a);
+    } @else {
+        @return $x / (1 + $a);
+    }
+}
+
+/**
+**  Text Border
+**/
+@function text-stroke($size: 2, $color: #fff, $correction: 0) {
+    $radius: $size - $correction;
+    $stroke: ();
+
+    @for $i from -$size through $size {
+        @for $k from -$size through $size {
+            $x: $k;
+            $y: $i;
+
+            @if $k > 0 {
+                $x: $k - .5;
+            } @else if $k < 0 {
+                $x: $k + .5;
+            }
+
+            @if $i > 0 {
+                $y: $i - .5;
+            } @else if $i < 0 {
+                $y: $i + .5;
+            }
+
+            @if ($x * $x + $y * $y <= $radius * $radius) {
+                $stroke: append($stroke, $i * 1px $k * 1px 0 $color, comma);
+            }
+        }
+    }
+
+    @return $stroke;
+}
+
+@mixin text-stroke($size: 2, $color: #fff, $correction: 0) {
+    text-shadow: text-stroke($size, $color, $correction);
+}
+
+@mixin text-hover() {
+
+    &:before {
+        transform: scaleX(0);
+        transition: transform .45s $easeOutCubic;
+        transform-origin: right;
+    }
+
+    &:hover,
+    &.active {
+
+        &:before {
+            transform: none;
+            transform-origin: left;
+        }
+    }
+}
+
+@mixin simple-link($bottom: 0) {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+
+    z-index: 1;
+
+    &:before,
+    &:after {
+        content: '';
+        display: block;
+
+        position: absolute;
+        left: .05em;
+        bottom: $bottom;
+
+        width: calc(100% - .05em);
+        border-bottom: 1px solid black;
+
+        z-index: -1;
+
+        transform: none;
+        transition: transform .45s $easeOutCubic;
+        transform-origin: left;
+    }
+
+    &:after {
+        border-color: rgba(black, .2);
+    }
+
+    @include hover() {
+
+        &:hover {
+
+            &:before {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+    }
+
+    &.active {
+
+        &:before {
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+    }
+}
+
+/**
+** Close Button
+**/
+
+@mixin closeButton($size, $thickness, $color) {
+
+    & {
+        display: inline-block;
+        width: $size;
+        height: $size;
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        display: block;
+        width: 120%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        height: $thickness;
+        background: $color;
+
+        // transition: background .45s ease;
+
+        @include breakpoint('medium') {
+            width: 140%;
+        }
+    }
+
+    &:after {
+        height: 120%;
+        width: $thickness;
+
+        @include breakpoint('medium') {
+            height: 140%;
+        }
+    }
+}
+
+/**
+ * Trick to correct vh unit
+ * @param {Number} $value
+ * https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+ */
+/* stylelint-disable declaration-block-no-duplicate-properties */
+/* stylelint-disable function-blacklist */
+@mixin vh($value: 100) {
+    min-height: $value * 1vh; // Fallback for browsers that do not support Custom Properties
+    min-height: calc(var(--vh, 1vh) * #{$value});
+}
+
+@mixin inner() {
+    padding-top: col-mobile(3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include vh;
+}
+
+@mixin btn() {
+    position: relative;
+    display: inline-block;
+    background: $freeletics_darkgray;
+    color: $white;
+    padding: col-mobile(1) col-mobile(2);
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px $alpha-black;
+    @include font($font,$fontSizeS);
+    @include breakpoint('small') {
+        @include font($font,$fontSizeXSDesktop);
+        padding: vw-column(.33) vw-column(1);
+    }
+}
+
+@mixin arrowLink() {
+    @include font($fontSecondary, $fontSizeXS);
+    @include breakpoint('small') {
+        @include font($fontSecondary,$fontSizeSDesktop);
+    }
+
+
+    &:before {
+        display: inline-block;
+        position: relative;
+        content: '→';
+        color: inherit;
+        margin-right: .5em;
+        transition: transform $duration $ease;
+        transform: translateX(0);
+    }
+
+    @include hover() {
+        &:before {
+            transform: translateX(2px);
+        }
+    }
+}
+@mixin material() {
+    transition: transform $duration $ease;
+    transform: translateY(0);
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    @include hover() {
+        transform: translateY(-1%);
+    }
+}
+
