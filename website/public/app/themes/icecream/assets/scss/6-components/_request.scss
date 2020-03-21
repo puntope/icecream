@@ -28,6 +28,10 @@
 
   &__form {
 	position: relative;
+	@include breakpoint('medium') {
+		margin-left: 5vw;
+	}
+
 	form {
 	  height: 667px;
 	  overflow-x: hidden;
