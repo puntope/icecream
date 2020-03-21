@@ -28,6 +28,18 @@ cd
 `http://localhost`
 `http://localhost/wp-admin` User:admin Pass: admin
 
+## What I did
+
+- Set a custom boilerplate with webpack, twig, composer docker, scss and ES6
+- Set different custom fields and Postypes to maximize the customization throw the wordpress panel, you can reuse this page easy.
+- Setup the interactive menu hover, gradient and styles.
+- Setup the header and the CTA (opcional in the WP panel) that connects with the form
+- Load Icecream PostTypes
+- Create a arequest component that send the data to the HubSpot form
+- This forms lives in the contact section inside the wordpress, making it easy to change.
+- You can connect any form with any page using the custom fields created.
+- Icecreams animation
+- Mobile version
 
 
 ## How it works
